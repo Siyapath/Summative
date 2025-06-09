@@ -52,13 +52,15 @@ const SettingsView = () => {
       genres: selectedGenres
     }));
 
-    alert('Settings updated successfully!');
+    // Navigate to first selected genre after save
+    const genreId = selectedGenres.length > 0 ? selectedGenres[0] : 28;
+    navigate(`/genre/${genreId}`);
   };
+
   const handleBack = () => {
     const genreId = selectedGenres.length > 0 ? selectedGenres[0] : 28;
     navigate(`/genre/${genreId}`);
   };
-  
 
   return (
     <div className="settings-view">
