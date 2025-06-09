@@ -32,7 +32,7 @@ const GenreView = () => {
         );
 
         setMovies(response.data.results);
-        setTotalPages(Math.min(response.data.total_pages, 4)); // does max pages to 4
+        setTotalPages(Math.min(response.data.total_pages, 10)); // does max pages to 4
       } catch (err) {
         console.error("Failed to fetch genre movies:", err);
       }
