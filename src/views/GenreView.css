@@ -73,7 +73,7 @@
 
 /* Cart buttons */
 .cart-button {
-  background-color: #940da0;
+  background-color: #f8f7f8;
   color: #fff;
   border: none;
   padding: 10px;
@@ -107,7 +107,7 @@
 .pagination-controls button {
   padding: 10px 16px;
   border-radius: 6px;
-  background-color: #4f46e5;
+  background-color: #fafafa;
   color: white;
   font-weight: 500;
   border: none;
@@ -116,7 +116,7 @@
 }
 
 .pagination-controls button:hover:not(:disabled) {
-  background-color: #5838ca;
+  background-color: #000000;
 }
 
 .pagination-controls button:disabled {
