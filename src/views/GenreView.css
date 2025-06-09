@@ -1,0 +1,156 @@
+/* Layout structure */
+.home-view.genre-view {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f7f8fa;
+}
+
+/* Sidebar and content area */
+.main-layout {
+  display: flex;
+  flex: 1;
+  width: 100%;
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+  border-right: 1px solid #eee;
+  box-sizing: border-box;
+}
+
+.content-area {
+  flex: 1;
+  padding: 40px 30px;
+  overflow-y: auto;
+}
+
+.content-area h2 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #111;
+}
+
+/* Movie cards grid */
+.movie-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+.movie-card {
+  width: 180px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.movie-card img {
+  width: 100%;
+  border-bottom: 1px solid #eee;
+}
+
+.movie-card p {
+  font-size: 14px;
+  font-weight: 500;
+  color: #222;
+  padding: 10px;
+  margin: 0;
+}
+
+/* Cart buttons */
+.cart-button {
+  background-color: #940da0;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 0 0 10px 10px;
+  transition: background-color 0.3s ease;
+}
+
+.cart-button:hover {
+  background-color: #f8f8f8;
+}
+
+.cart-button.added {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* Pagination controls */
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 30px;
+  font-size: 16px;
+}
+
+.pagination-controls button {
+  padding: 10px 16px;
+  border-radius: 6px;
+  background-color: #4f46e5;
+  color: white;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+  background-color: #5838ca;
+}
+
+.pagination-controls button:disabled {
+  background-color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  .movie-cards {
+    justify-content: center;
+  }
+
+  .movie-card {
+    width: 45%;
+  }
+}
+
+@media (max-width: 480px) {
+  .movie-card {
+    width: 100%;
+  }
+
+  .content-area {
+    padding: 20px 15px;
+  }
+}

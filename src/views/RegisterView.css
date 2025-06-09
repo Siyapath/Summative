@@ -1,0 +1,112 @@
+/* Base styles */
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f5f7;
+  color: #000000; /* Default text color */
+}
+
+/* Page wrapper */
+.register-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(145deg, #f0f2f5, #dce1e7);
+}
+
+/* Form container */
+.register-view form {
+  background-color: #ffffff;
+  padding: 36px 32px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #000000; /* Ensures text inside form is black */
+}
+
+/* Heading */
+.register-view h2 {
+  text-align: center;
+  font-size: 26px;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+/* Inputs */
+.register-view input {
+  padding: 12px;
+  font-size: 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  color: #000000;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.register-view input:focus {
+  border-color: #4f46e5;
+  background-color: #ffffff;
+  outline: none;
+}
+
+/* Submit Button */
+.register-view button {
+  padding: 12px;
+  font-size: 15px;
+  background-color: #4f46e5;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.register-view button:hover {
+  background-color: #4338ca;
+}
+
+/* Genre checkbox section */
+.genre-checkboxes {
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: #000000;
+}
+
+.genre-checkboxes label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  background-color: #ffffff;
+  padding: 6px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: #000000;
+}
+
+.genre-checkboxes input[type="checkbox"] {
+  accent-color: #4f46e5;
+}
+
+/* Responsive tweak */
+@media (max-width: 480px) {
+  .register-view form {
+    padding: 24px 20px;
+  }
+}

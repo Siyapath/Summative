@@ -1,0 +1,118 @@
+
+.movie-detail-view {
+  background-color: #000000; 
+  padding: 20px;
+}
+
+/* Movie Detail Container */
+.movie-detail-container {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  padding: 40px;
+  background-color: #dadada; 
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+  max-width: 1200px; 
+  margin: 40px auto; 
+  flex-wrap: wrap; 
+  width: 100%; 
+  box-sizing: border-box; 
+}
+
+
+.movie-detail-poster {
+  
+  width: 500px; 
+  height: 750px; 
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  margin: 0 auto; 
+}
+
+.movie-detail-poster:hover {
+  transform: scale(1.05); 
+}
+
+/* Movie Info Section */
+.movie-detail-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 15px;
+  max-width: 700px; 
+}
+
+.movie-detail-info h2 {
+  font-size: 28px;
+  color: #333; 
+  font-weight: 9000; 
+}
+
+.movie-detail-info .overview {
+  font-size: 16px;
+  color: #555; 
+  line-height: 1.8; 
+}
+
+.trailer {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #000000; 
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+.loading,
+.error-message {
+  text-align: center;
+  font-size: 18px;
+  padding: 40px;
+  color: #888; 
+}
+
+/* Back Button */
+.back-button {
+  padding: 8px 16px;
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  width: 75px; 
+  height: 75px; 
+  display: inline-block; 
+  margin: 20px auto; 
+}
+
+.back-button:hover {
+  background-color: #878a8d; 
+}
+
+
+@media (max-width: 768px) {
+  .movie-detail-container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .movie-detail-poster {
+    width: 100%; 
+    max-width: 300px; 
+    margin: 0 auto; 
+  }
+
+  
+
+  .back-button {
+    font-size: 15px; 
+    padding: 6px 12px;
+    max-width: 120px; 
+  }
+}

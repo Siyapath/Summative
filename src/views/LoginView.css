@@ -1,0 +1,79 @@
+/* Full viewport styling */
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f1f5f9;
+}
+
+/* Centered login form container */
+.login-view {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #cbd5e1, #f8fafc);
+  animation: fadeIn 1s ease-in;
+}
+
+/* Form styling */
+.login-view form {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Form title */
+.login-view h2 {
+  text-align: center;
+  font-size: 28px;
+  color: #1e293b;
+  margin-bottom: 10px;
+}
+
+/* Inputs */
+.login-view input {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  color: #1e293b;
+  background-color: #f9fafb;
+  transition: border 0.3s;
+}
+
+.login-view input:focus {
+  border-color: #3b82f6;
+  outline: none;
+}
+
+/* Button */
+.login-view button {
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #3b82f6;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-view button:hover {
+  background-color: #2563eb;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

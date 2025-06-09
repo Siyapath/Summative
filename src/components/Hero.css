@@ -1,0 +1,52 @@
+/* Hero.css */
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url('https://png.pngtree.com/thumb_back/fh260/background/20230612/pngtree-the-movie-theatre-with-popcorn-and-a-striped-cup-image_2884518.jpg') no-repeat center center/cover;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  background-size: cover;
+  background-position: center;
+}
+
+.site-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero h2 {
+  font-size: 2rem;
+  font-weight: 300;
+  margin: 20px 0;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(180, 122, 122, 0.5);
+}
+
+.hero p {
+  font-size: 1.1rem;
+  margin-top: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Optional: Make the text more readable for smaller screens */
+@media (max-width: 768px) {
+  .site-title {
+    font-size: 2.5rem;
+  }
+
+  .hero h2 {
+    font-size: 1.5rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+}
