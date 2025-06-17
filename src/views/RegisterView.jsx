@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./RegisterView.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
@@ -6,9 +6,11 @@ import {
   createUserWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { auth, firestore } from "../firebase/firebaseConfig";
+import { UserContext } from "../context/UserContext";
 
 const RegisterView = () => {
   const [firstName, setFirstName] = useState("");
@@ -20,6 +22,7 @@ const RegisterView = () => {
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [googleUid, setGoogleUid] = useState(null);
 
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -90,11 +93,12 @@ const RegisterView = () => {
 
     try {
       let uid;
+      let userCredential;
 
       if (googleUid) {
         uid = googleUid;
       } else {
-        const userCredential = await createUserWithEmailAndPassword(
+        userCredential = await createUserWithEmailAndPassword(
           auth,
           email,
           password
@@ -110,26 +114,34 @@ const RegisterView = () => {
         return;
       }
 
-      const selectedGenreObjects = genres
+      const selectedGenreNames = genres
         .filter((g) => selectedGenres.includes(g.id))
-        .map((g) => ({ id: g.id, name: g.name }));
+        .map((g) => g.name);
 
-      await setDoc(userRef, {
+      const userData = {
+        uid,
         email,
         firstName,
         lastName,
-        genrePreferences: selectedGenreObjects,
+        genres: selectedGenreNames,
         purchases: [],
         createdAt: new Date(),
+      };
+      await setDoc(userRef, userData);
+
+      localStorage.setItem("user", JSON.stringify(userData));
+
+      // Update UserContext so sidebar updates immediately
+      setUser({
+        ...userData,
+        loggedIn: true,
       });
 
-      alert("Registration successful!");
-
-      if (selectedGenreObjects.length > 0) {
-        navigate(`/genre/${selectedGenreObjects[0].id}`);
-      } else {
-        navigate("/");
+      if (!googleUid) {
+        await signInWithEmailAndPassword(auth, email, password);
       }
+
+      navigate("/");
     } catch (err) {
       console.error("Registration failed:", err);
       if (err.code === "auth/email-already-in-use") {
@@ -146,7 +158,6 @@ const RegisterView = () => {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
 
-      // Check if user already exists in Firestore
       const userRef = doc(firestore, "users", user.uid);
       const userSnapshot = await getDoc(userRef);
 

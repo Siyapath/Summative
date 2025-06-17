@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './LoginView.css';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -8,17 +8,19 @@ import {
 } from 'firebase/auth';
 import { auth, firestore } from '../firebase/firebaseConfig';
 import { doc, getDoc } from 'firebase/firestore';
+import { UserContext } from '../context/UserContext';
 
 const LoginView = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const { setUser } = useContext(UserContext);
 
   const fetchUserInfo = async (uid) => {
     const userRef = doc(firestore, "users", uid);
     const userSnap = await getDoc(userRef);
     if (userSnap.exists()) {
-      return { id: uid, ...userSnap.data() };
+      return { uid, ...userSnap.data() };
     } else {
       return null;
     }
@@ -32,12 +34,14 @@ const LoginView = () => {
 
       const userData = await fetchUserInfo(user.uid);
       if (!userData) {
-        // User authenticated but not registered in Firestore
         alert("You must register before logging in.");
         return;
       }
 
-      // No need to call login() - context will update automatically
+      // Update context and localStorage
+      setUser({ ...userData, loggedIn: true });
+      localStorage.setItem("user", JSON.stringify({ ...userData, loggedIn: true }));
+
       navigate('/');
     } catch (err) {
       console.error("Login error:", err);
@@ -84,7 +88,11 @@ const LoginView = () => {
         return;
       }
 
-      // No need to call login() - context will update automatically
+      // User exists in Firestore, update context and localStorage
+      const userData = { uid: user.uid, ...userSnap.data() };
+      setUser({ ...userData, loggedIn: true });
+      localStorage.setItem("user", JSON.stringify({ ...userData, loggedIn: true }));
+
       navigate('/');
     } catch (err) {
       console.error("Google Sign-In Error:", err);

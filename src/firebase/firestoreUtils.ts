@@ -1,6 +1,6 @@
 import { getFirestore, doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { initializeApp, getApps } from "firebase/app";
-import { firebaseConfig } from "./firebaseConfig"; // ✅ Works now
+import { firebaseConfig } from "./firebaseConfig"; 
 
 export async function saveUserToFirestore(userId: string, userData: Record<string, any>) {
   try {
