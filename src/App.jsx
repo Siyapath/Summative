@@ -8,9 +8,10 @@ import MovieDetailView from './views/MovieDetailView';
 import ErrorView from './views/ErrorView';
 import SettingsView from './views/SettingsView';
 import SearchView from './views/SearchView';
-import CartView from './views/CartView'; 
+import CartView from './views/CartView';
 import { UserProvider } from './context/UserContext';
-import { CartProvider } from './context/CartContext'; 
+import { CartProvider } from './context/CartContext';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
@@ -21,13 +22,47 @@ function App() {
             <Route path="/" element={<HomeView />} />
             <Route path="/login" element={<LoginView />} />
             <Route path="/register" element={<RegisterView />} />
-            <Route path="/genre/:id" element={<GenreView />} />
-            <Route path="/movie/:movieId" element={<MovieDetailView />} />
-            <Route path="/settings" element={<SettingsView />} />
-            <Route path="/search" element={<SearchView />} />
-            <Route path="/cart" element={<CartView />} /> {/* Add route for cart */}
+            <Route
+              path="/genre/:id"
+              element={
+                <PrivateRoute>
+                  <GenreView />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/movie/:movieId"
+              element={
+                <PrivateRoute>
+                  <MovieDetailView />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/settings"
+              element={
+                <PrivateRoute>
+                  <SettingsView />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/search"
+              element={
+                <PrivateRoute>
+                  <SearchView />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/cart"
+              element={
+                <PrivateRoute>
+                  <CartView />
+                </PrivateRoute>
+              }
+            />
             <Route path="*" element={<ErrorView />} />
-            <Route path="/cart" element={<CartView />} />
           </Routes>
         </Router>
       </CartProvider>

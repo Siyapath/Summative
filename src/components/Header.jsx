@@ -7,7 +7,7 @@ import axios from "axios";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { user, logout } = useContext(UserContext);
+  const { firebaseUser, genres, logout } = useContext(UserContext);
   const { cart } = useContext(CartContext);
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -69,23 +69,22 @@ const Header = () => {
   }, []);
 
   const getGreetingName = () => {
-    if (user.firstName && user.firstName.trim() !== "") {
-      return user.firstName;
+    if (firebaseUser?.displayName && firebaseUser.displayName.trim() !== "") {
+      return firebaseUser.displayName.split(" ")[0];
     }
-    if (user.email) {
-      return user.email.split("@")[0];
+    if (firebaseUser?.email) {
+      return firebaseUser.email.split("@")[0];
     }
     return "User";
   };
 
   return (
     <header className="header">
-      <Link to="/" className="logo">
-        <img className="logo" src="https://static.vecteezy.com/system/resources/previews/012/627/815/non_2x/3d-popcorn-striped-bucket-cinema-snack-movie-entertainment-concept-high-quality-isolated-3d-render-free-png.png" alt="Logo" />
+      <Link to="/" className="logo-link">
+        <img className="logo" src="/images/hmm.png" alt="Logo" />
       </Link>
 
-
-      {user.loggedIn && (
+      {!!firebaseUser && (
         <>
           <h1 className="welcome-heading">Hello, {getGreetingName()}!</h1>
 
@@ -121,7 +120,7 @@ const Header = () => {
       )}
 
       <div className="header-buttons">
-        {user.loggedIn ? (
+        {!!firebaseUser ? (
           <>
             <button onClick={() => navigate("/cart")}>
               Cart{" "}
@@ -142,6 +141,5 @@ const Header = () => {
     </header>
   );
 };
-
 
 export default Header;
